@@ -6,5 +6,7 @@ data class QuotesApiResponse(
     val page: Int,
     val results: List<Quotes>,
     val totalCount: Int,
-    val totalPages: Int
+    val totalPages: Int,
+    val statusCode: Int,
+    val statusMessage: String
 )
