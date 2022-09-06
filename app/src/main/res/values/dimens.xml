@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="quotes_item_height">160dp</dimen>
+    <dimen name="common_padding_margin_16dp">16dp</dimen>
+    <dimen name="common_padding_margin_8dp">8dp</dimen>
+    <dimen name="text_size_20sp">20sp</dimen>
+</resources>
