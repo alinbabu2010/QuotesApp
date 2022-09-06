@@ -6,6 +6,13 @@ plugins {
 }
 
 android {
+
+    applicationVariants.all { variants ->
+        variants.outputs.all {
+            buildConfigField("String","BASE_URL","\"https://quotable.io/\"")
+        }
+    }
+
     compileSdk 32
 
     defaultConfig {
