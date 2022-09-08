@@ -8,6 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sample.quotesapp.databinding.ActivityQuotesBinding
+import com.sample.quotesapp.ui.adapters.LoaderAdapter
 import com.sample.quotesapp.ui.adapters.QuotesAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -29,7 +30,7 @@ class QuotesActivity : AppCompatActivity() {
         setContentView(binding?.root)
 
         binding?.rvQuotes?.run {
-            adapter = this@QuotesActivity.adapter
+            adapter = this@QuotesActivity.adapter.withLoadStateFooter(LoaderAdapter())
             layoutManager = LinearLayoutManager(this@QuotesActivity)
         }
 
