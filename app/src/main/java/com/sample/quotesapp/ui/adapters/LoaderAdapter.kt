@@ -10,7 +10,7 @@ import com.sample.quotesapp.databinding.LoaderItemBinding
 
 class LoaderAdapter : LoadStateAdapter<LoaderAdapter.LoadStateViewHolder>() {
 
-    class LoadStateViewHolder(val binding: LoaderItemBinding) :
+    class LoadStateViewHolder(private val binding: LoaderItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(loadState: LoadState) {
             binding.progressBar.isVisible = loadState is LoadState.Loading
@@ -28,5 +28,5 @@ class LoaderAdapter : LoadStateAdapter<LoaderAdapter.LoadStateViewHolder>() {
             false
         )
     )
-    
+
 }

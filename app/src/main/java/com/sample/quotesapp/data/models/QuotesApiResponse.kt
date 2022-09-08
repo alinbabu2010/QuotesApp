@@ -8,5 +8,5 @@ data class QuotesApiResponse(
     val totalCount: Int,
     val totalPages: Int,
     val statusCode: Int,
-    val statusMessage: String
+    val statusMessage: String,
 )

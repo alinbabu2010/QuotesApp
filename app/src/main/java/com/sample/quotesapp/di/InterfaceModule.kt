@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.sample.quotesapp.di
 
 import com.sample.quotesapp.data.repositories.QuotesListRepository
@@ -15,12 +17,12 @@ interface InterfaceModule {
 
     @Binds
     fun bindQuotesNetworkDataSource(
-        quotesInternetDataSource: QuotesInternetDataSource
+        quotesInternetDataSource: QuotesInternetDataSource,
     ): QuotesNetworkDataSource
 
     @Binds
     fun bindQuotesRepository(
-        quotesListRepository: QuotesListRepository
+        quotesListRepository: QuotesListRepository,
     ): QuotesRepository
 
 

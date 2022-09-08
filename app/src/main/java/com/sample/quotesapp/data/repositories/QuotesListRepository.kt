@@ -17,7 +17,7 @@ import javax.inject.Singleton
 @Singleton
 class QuotesListRepository @Inject constructor(
     private val quotesNetworkDataSource: QuotesNetworkDataSource,
-    quotesDatabase: QuotesDatabase
+    quotesDatabase: QuotesDatabase,
 ) : QuotesRepository {
 
     private val quotesDao = quotesDatabase.quotesDao()
@@ -50,7 +50,8 @@ class QuotesListRepository @Inject constructor(
         quotesDao.deleteQuotes()
     }
 
-    override suspend fun getRemoteKeys(id:String) : QuoteRemoteKeys = remoteKeysDao.getRemoteKeys(id)
+    override suspend fun getRemoteKeys(id: String): QuoteRemoteKeys =
+        remoteKeysDao.getRemoteKeys(id)
 
     override suspend fun addAllRemoteKeys(keys: List<QuoteRemoteKeys>) {
         remoteKeysDao.addAllRemoteKeys(keys)

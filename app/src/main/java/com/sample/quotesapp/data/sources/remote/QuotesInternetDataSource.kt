@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 class QuotesInternetDataSource @Inject constructor(
     private val quotesApi: QuotesApi,
-    @ApplicationContext private val context: Context
+    @ApplicationContext private val context: Context,
 ) : QuotesNetworkDataSource {
 
     override suspend fun getQuotes(page: Int): Resource<QuotesApiResponse> =

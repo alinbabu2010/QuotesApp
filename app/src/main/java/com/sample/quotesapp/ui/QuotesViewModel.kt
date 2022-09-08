@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class QuotesViewModel @Inject constructor(
-    private val quotesRepository: QuotesRepository
+    private val quotesRepository: QuotesRepository,
 ) : ViewModel() {
 
     fun getQuotes() = quotesRepository.getQuotes().cachedIn(viewModelScope)

@@ -8,5 +8,5 @@ data class QuoteRemoteKeys(
     @PrimaryKey(autoGenerate = false)
     val id: String,
     val prevPage: Int?,
-    val nextPage: Int?
+    val nextPage: Int?,
 )

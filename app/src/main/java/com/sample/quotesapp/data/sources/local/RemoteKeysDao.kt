@@ -10,7 +10,7 @@ import com.sample.quotesapp.data.models.QuoteRemoteKeys
 interface RemoteKeysDao {
 
     @Query("SELECT * FROM QuoteRemoteKeys WHERE id=:id")
-    suspend fun getRemoteKeys(id:String) : QuoteRemoteKeys
+    suspend fun getRemoteKeys(id: String): QuoteRemoteKeys
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addAllRemoteKeys(keys: List<QuoteRemoteKeys>)

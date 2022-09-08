@@ -6,9 +6,10 @@ import com.sample.quotesapp.data.models.Quotes
 import com.sample.quotesapp.data.models.Resource
 import com.sample.quotesapp.data.repositories.QuotesRepository
 
+@Suppress("unused")
 class QuotesPagingSource(
-    private val quotesRepository: QuotesRepository
-): PagingSource<Int, Quotes>() {
+    private val quotesRepository: QuotesRepository,
+) : PagingSource<Int, Quotes>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Quotes> {
         return try {

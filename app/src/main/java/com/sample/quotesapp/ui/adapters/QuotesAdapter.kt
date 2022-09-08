@@ -12,7 +12,7 @@ import javax.inject.Inject
 class QuotesAdapter @Inject constructor() :
     PagingDataAdapter<Quotes, QuotesAdapter.QuotesViewHolder>(QuotesDiffUtils()) {
 
-    class QuotesViewHolder(val binding: ItemQuotesBinding) :
+    class QuotesViewHolder(private val binding: ItemQuotesBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Quotes) {

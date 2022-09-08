@@ -9,7 +9,7 @@ interface QuotesApi {
 
     @GET(ENDPOINT_QUOTES)
     fun getQuotes(
-        @Query(PARAM_PAGE) page: Int
+        @Query(PARAM_PAGE) page: Int,
     ): Call<QuotesApiResponse>
 
     companion object {

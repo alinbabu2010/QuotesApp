@@ -11,7 +11,7 @@ import com.sample.quotesapp.data.models.Quotes
 interface QuotesDao {
 
     @Query("SELECT * FROM Quotes")
-    fun getQuotes() : PagingSource<Int, Quotes>
+    fun getQuotes(): PagingSource<Int, Quotes>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addQuotes(quotes: List<Quotes>)

@@ -12,9 +12,9 @@ interface QuotesRepository {
     suspend fun getQuoteList(page: Int): Resource<QuotesApiResponse>
     fun getQuotes(): Flow<PagingData<Quotes>>
     suspend fun addQuotes(quotes: List<Quotes>)
-    fun getQuotesFromDb() : PagingSource<Int, Quotes>
+    fun getQuotesFromDb(): PagingSource<Int, Quotes>
     suspend fun deleteQuotes()
-    suspend fun getRemoteKeys(id:String) : QuoteRemoteKeys
+    suspend fun getRemoteKeys(id: String): QuoteRemoteKeys
     suspend fun addAllRemoteKeys(keys: List<QuoteRemoteKeys>)
     suspend fun deleteAllRemoteKeys()
 }
