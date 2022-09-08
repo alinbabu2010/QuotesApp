@@ -3,9 +3,11 @@ package com.sample.quotesapp.ui
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sample.quotesapp.databinding.ActivityQuotesBinding
 import com.sample.quotesapp.ui.adapters.LoaderAdapter
@@ -36,8 +38,16 @@ class QuotesActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.CREATED) {
-                viewModel.getQuotes().collectLatest {
-                    adapter.submitData(it)
+                launch {
+                    viewModel.getQuotes().collectLatest {
+                        adapter.submitData(it)
+                    }
+                }
+                launch {
+                    adapter.loadStateFlow.collectLatest { loadState ->
+                        binding?.progressBar?.isVisible =
+                            loadState.source.refresh is LoadState.Loading
+                    }
                 }
             }
         }
