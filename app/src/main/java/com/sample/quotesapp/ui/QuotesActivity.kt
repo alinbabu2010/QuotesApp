@@ -46,7 +46,9 @@ class QuotesActivity : AppCompatActivity() {
                 launch {
                     adapter.loadStateFlow.collectLatest { loadState ->
                         binding?.progressBar?.isVisible =
-                            loadState.source.refresh is LoadState.Loading
+                            loadState.refresh is LoadState.Loading
+                        binding?.rvQuotes?.isVisible =
+                            loadState.refresh !is LoadState.Loading
                     }
                 }
             }
