@@ -1,4 +1,4 @@
-package com.sample.quotesapp.ui
+package com.sample.quotesapp.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
