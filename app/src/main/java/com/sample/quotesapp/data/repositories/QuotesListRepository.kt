@@ -1,10 +1,12 @@
 package com.sample.quotesapp.data.repositories
 
+import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingSource
 import com.sample.quotesapp.data.models.QuoteRemoteKeys
 import com.sample.quotesapp.data.models.Quotes
+import com.sample.quotesapp.data.paging.QuotesRemoteMediator
 import com.sample.quotesapp.data.sources.local.QuotesDatabase
 import com.sample.quotesapp.data.sources.remote.QuotesNetworkDataSource
 import kotlinx.coroutines.Dispatchers
@@ -31,9 +33,11 @@ class QuotesListRepository @Inject constructor(
         quotesNetworkDataSource.getQuotes(page)
     }
 
+    @OptIn(ExperimentalPagingApi::class)
     override fun getQuotes() = Pager(
         config = getPagingConfig(),
-        pagingSourceFactory = { QuotesPagingSource(this) }
+        remoteMediator = QuotesRemoteMediator(this),
+        pagingSourceFactory = { quotesDao.getQuotes() }
     ).flow
 
     override fun getQuotesFromDb(): PagingSource<Int, Quotes> = quotesDao.getQuotes()
