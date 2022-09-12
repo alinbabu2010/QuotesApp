@@ -26,7 +26,8 @@ class QuotesListRepository @Inject constructor(
     private fun getPagingConfig() = PagingConfig(
         pageSize = 10,
         prefetchDistance = 1,
-        maxSize = 100
+        maxSize = 100,
+        initialLoadSize = 10
     )
 
     override suspend fun getQuoteList(page: Int) = withContext(Dispatchers.IO) {
