@@ -46,10 +46,18 @@ class QuotesActivity : AppCompatActivity() {
                 launch {
                     adapter.loadStateFlow.collectLatest { loadState ->
                         binding?.progressBar?.isVisible =
-                            loadState.source.refresh is LoadState.Loading
+                            loadState.source.refresh is LoadState.Loading && binding?.refreshLayout?.isRefreshing == false
+                        if (binding?.refreshLayout?.isRefreshing == true) {
+                            binding?.refreshLayout?.isRefreshing =
+                                loadState.source.refresh is LoadState.Loading
+                        }
                     }
                 }
             }
+        }
+
+        binding?.refreshLayout?.setOnRefreshListener {
+            adapter.refresh()
         }
 
     }
