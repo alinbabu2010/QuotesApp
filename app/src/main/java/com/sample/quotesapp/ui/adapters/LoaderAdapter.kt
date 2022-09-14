@@ -7,13 +7,18 @@ import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.sample.quotesapp.databinding.LoaderItemBinding
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class LoaderAdapter : LoadStateAdapter<LoaderAdapter.LoadStateViewHolder>() {
+@Singleton
+class LoaderAdapter @Inject constructor() : LoadStateAdapter<LoaderAdapter.LoadStateViewHolder>() {
 
-    class LoadStateViewHolder(private val binding: LoaderItemBinding) :
+    var isRefreshing: Boolean = false
+
+    inner class LoadStateViewHolder(private val binding: LoaderItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(loadState: LoadState) {
-            binding.progressBar.isVisible = loadState is LoadState.Loading
+            binding.progressBar.isVisible = loadState is LoadState.Loading && !isRefreshing
         }
     }
 
