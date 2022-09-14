@@ -4,6 +4,8 @@ Android application that displays a list of quotes. Built to explore Paging3 lib
 PagingSource implementation source code [here](https://github.com/alinbabu2010/QuotesApp/releases/tag/WithApiOnly).  
 Remote mediator implementation source code [here](https://github.com/alinbabu2010/QuotesApp/releases/tag/withOfflineSupport).
 
+Checkout this [branch](https://github.com/alinbabu2010/QuotesApp/tree/feature/refresh_apiOnly) for refresh for paging source implementation
+
 ## Libraries
 [JetPack](https://developer.android.com/jetpack/getting-started)  
 [Paging3](https://developer.android.com/jetpack/androidx/releases/paging)  
