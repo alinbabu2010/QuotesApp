@@ -49,14 +49,13 @@ class QuotesRemoteMediator(
             val prevKey = if (currentPage == 1) null else currentPage - 1
             val nextKey = if (endOfPaginationReached) null else currentPage + 1
 
-            if (loadType == LoadType.REFRESH) {
-                quotesRepository.deleteQuotes()
-                quotesRepository.deleteAllRemoteKeys()
-            }
-
             when (val response = quotesRepository.getQuoteList(currentPage)) {
-                is Resource.Error -> {}
+                is Resource.Error -> return MediatorResult.Error(response.exception)
                 is Resource.Success -> {
+                    if (loadType == LoadType.REFRESH) {
+                        quotesRepository.deleteQuotes()
+                        quotesRepository.deleteAllRemoteKeys()
+                    }
                     saveToDatabase(response.data, prevKey, nextKey)
                     endOfPaginationReached = response.data?.totalPages == currentPage
                 }
