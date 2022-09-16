@@ -4,4 +4,5 @@
     <dimen name="common_padding_margin_16dp">16dp</dimen>
     <dimen name="common_padding_margin_8dp">8dp</dimen>
     <dimen name="text_size_20sp">20sp</dimen>
+    <dimen name="retry_button_size">48dp</dimen>
 </resources>
