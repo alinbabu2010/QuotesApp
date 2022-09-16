@@ -1,6 +1,7 @@
 package com.sample.quotesapp.ui
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -40,6 +41,10 @@ class QuotesActivity : AppCompatActivity() {
         binding?.rvQuotes?.run {
             adapter = this@QuotesActivity.adapter.withLoadStateFooter(loaderAdapter)
             layoutManager = LinearLayoutManager(this@QuotesActivity)
+        }
+
+        loaderAdapter.onRetry = View.OnClickListener {
+            adapter.retry()
         }
 
         lifecycleScope.launch {
