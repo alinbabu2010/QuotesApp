@@ -64,6 +64,17 @@ class QuotesActivity : AppCompatActivity() {
                         .filter { it.refresh is LoadState.Loading }
                         .collectLatest { configureLoadingState(it) }
                 }
+                launch {
+                    adapter.loadStateFlow.filter { it.refresh is LoadState.Error }.collectLatest {
+                        configureNotLoadingStates(true)
+                        binding?.errorTextView?.isVisible = if (adapter.itemCount == 0) {
+                            binding?.errorTextView?.text =
+                                (it.refresh as? LoadState.Error)?.error?.localizedMessage
+                            true
+                        } else false
+
+                    }
+                }
             }
         }
 
@@ -88,7 +99,7 @@ class QuotesActivity : AppCompatActivity() {
     /**
      * Method to configure view in case of not loading state
      */
-    private fun configureNotLoadingStates() {
+    private fun configureNotLoadingStates(isError: Boolean = false) {
         if (binding?.refreshLayout?.isRefreshing == true) {
             loaderAdapter.isRefreshing = false
             binding?.progressBar?.isVisible = false
@@ -97,7 +108,8 @@ class QuotesActivity : AppCompatActivity() {
             binding?.rvQuotes?.isVisible = true
             binding?.progressBar?.isVisible = false
         }
-        binding?.rvQuotes?.scrollToPosition(0)
+        if (!isError)
+            binding?.rvQuotes?.scrollToPosition(0)
     }
 
 }
