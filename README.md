@@ -4,7 +4,10 @@ Android application that displays a list of quotes. Built to explore Paging3 lib
 PagingSource implementation source code [here](https://github.com/alinbabu2010/QuotesApp/releases/tag/WithApiOnly).  
 Remote mediator implementation source code [here](https://github.com/alinbabu2010/QuotesApp/releases/tag/withOfflineSupport).
 
-Checkout this [branch](https://github.com/alinbabu2010/QuotesApp/tree/feature/refresh_apiOnly) for refresh for paging source implementation
+Checkout this [branch](https://github.com/alinbabu2010/QuotesApp/tree/feature/refresh_apiOnly) for refresh for paging source implementation by [
+razi3742](https://github.com/razi3742)
+
+Check this branch [feature/add_retry_and_error](https://github.com/alinbabu2010/QuotesApp/tree/feature/add_retry_and_error) for different implematation of retry mechanism
 
 ## Libraries
 [JetPack](https://developer.android.com/jetpack/getting-started)  
