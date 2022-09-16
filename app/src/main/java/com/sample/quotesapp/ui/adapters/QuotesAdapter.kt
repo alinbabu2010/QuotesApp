@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sample.quotesapp.data.models.Quotes
 import com.sample.quotesapp.databinding.ItemQuotesBinding
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class QuotesAdapter @Inject constructor() :
     PagingDataAdapter<Quotes, QuotesAdapter.QuotesViewHolder>(QuotesDiffUtils()) {
 

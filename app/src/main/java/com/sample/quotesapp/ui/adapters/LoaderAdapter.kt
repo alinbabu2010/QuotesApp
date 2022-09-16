@@ -15,10 +15,22 @@ class LoaderAdapter @Inject constructor() : LoadStateAdapter<LoaderAdapter.LoadS
 
     var isRefreshing: Boolean = false
 
+    @Inject
+    lateinit var adapter: QuotesAdapter
+
     inner class LoadStateViewHolder(private val binding: LoaderItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(loadState: LoadState) {
             binding.progressBar.isVisible = loadState is LoadState.Loading && !isRefreshing
+
+            binding.retryButton.isVisible = loadState is LoadState.Error
+            binding.errorMsg.isVisible =
+                !(loadState as? LoadState.Error)?.error?.message.isNullOrBlank()
+            binding.errorMsg.text = (loadState as? LoadState.Error)?.error?.message
+
+            binding.retryButton.setOnClickListener {
+                adapter.retry()
+            }
         }
     }
 

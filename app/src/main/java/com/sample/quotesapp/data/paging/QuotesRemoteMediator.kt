@@ -55,7 +55,9 @@ class QuotesRemoteMediator(
             }
 
             when (val response = quotesRepository.getQuoteList(currentPage)) {
-                is Resource.Error -> {}
+                is Resource.Error -> {
+                    return MediatorResult.Error(response.exception)
+                }
                 is Resource.Success -> {
                     saveToDatabase(response.data, prevKey, nextKey)
                     endOfPaginationReached = response.data?.totalPages == currentPage

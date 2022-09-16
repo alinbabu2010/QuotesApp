@@ -24,10 +24,10 @@ class QuotesListRepository @Inject constructor(
     private val remoteKeysDao = quotesDatabase.remoteKeysDao()
 
     private fun getPagingConfig() = PagingConfig(
-        pageSize = 10,
-        prefetchDistance = 1,
+        pageSize = 1,
+        prefetchDistance = 0,
         maxSize = 100,
-        initialLoadSize = 10
+        initialLoadSize = 1
     )
 
     override suspend fun getQuoteList(page: Int) = withContext(Dispatchers.IO) {

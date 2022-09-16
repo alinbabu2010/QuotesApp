@@ -49,6 +49,7 @@ class QuotesActivity : AppCompatActivity() {
                         adapter.submitData(it)
                     }
                 }
+
                 launch {
                     adapter.loadStateFlow.distinctUntilChangedBy { it.refresh }
                         .filter { it.refresh is LoadState.NotLoading }
@@ -59,6 +60,18 @@ class QuotesActivity : AppCompatActivity() {
                         .filter { it.refresh is LoadState.Loading }
                         .collectLatest { configureLoadingState(it) }
                 }
+
+                launch {
+                    adapter.loadStateFlow
+                        .collectLatest {
+                            if (it.refresh is LoadState.Error) {
+                                val error = (it.refresh as LoadState.Error).error.message
+                                    ?: "Something went wrong"
+                                showError(error)
+                            }
+                        }
+                }
+
             }
         }
 
@@ -69,10 +82,19 @@ class QuotesActivity : AppCompatActivity() {
 
     }
 
+    private fun showError(error: String) {
+        binding?.rvQuotes?.isVisible = false
+        binding?.progressBar?.isVisible = false
+        binding?.refreshLayout?.isRefreshing = false
+        binding?.error?.isVisible = true
+        binding?.error?.text = error
+    }
+
     /**
      * Method to configure view in case of loading state
      */
     private fun configureLoadingState(loadState: CombinedLoadStates) {
+        binding?.error?.isVisible = false
         if (binding?.refreshLayout?.isRefreshing == false) {
             loaderAdapter.isRefreshing = false
             binding?.rvQuotes?.isVisible = false
@@ -84,6 +106,7 @@ class QuotesActivity : AppCompatActivity() {
      * Method to configure view in case of not loading state
      */
     private fun configureNotLoadingStates() {
+
         if (binding?.refreshLayout?.isRefreshing == true) {
             loaderAdapter.isRefreshing = false
             binding?.progressBar?.isVisible = false
